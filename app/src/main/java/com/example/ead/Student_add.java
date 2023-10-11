@@ -47,6 +47,10 @@ public class Student_add extends AppCompatActivity {
         Intent loginIntent = new Intent(this, New_Login.class); // Replace SignUpActivity.class with the actual sign-up activity class
         startActivity(loginIntent);
     }
+    public void onViewCardViewButtonClick(View view) {
+        Intent loginIntent = new Intent(this, CardView.class); // Replace SignUpActivity.class with the actual sign-up activity class
+        startActivity(loginIntent);
+    }
     private static final String BASE_URL = "https://studentmanagement20231009140446.azurewebsites.net/";
     // Replace with your API base URL
     private EditText etName, etAge,etGender; // Reference to your EditText fields

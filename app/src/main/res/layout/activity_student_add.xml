@@ -109,7 +109,20 @@
 
         android:layout_marginTop="16dp"
         android:onClick="onNewLoginButtonClick"
-        app:layout_constraintTop_toBottomOf="@id/btnNewSignUp"
+        app:layout_constraintTop_toBottomOf="@+id/btnNewSignUp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+
+    <Button
+        android:id="@+id/btnCardView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New Login"
+
+        android:layout_marginTop="16dp"
+        android:onClick="onViewCardViewButtonClick"
+        app:layout_constraintTop_toBottomOf="@+id/btnNewLogin"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
     <TextView
@@ -117,7 +130,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Authentication Token: "
-        app:layout_constraintTop_toBottomOf="@id/btnNewLogin"
+        app:layout_constraintTop_toBottomOf="@+id/btnCardView"
         android:textSize="16sp"
         android:textStyle="bold"
         android:layout_marginTop="16dp"
