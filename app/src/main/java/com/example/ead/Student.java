@@ -26,6 +26,19 @@ public class Student {
         this.age = age;
     }
 
+    public Student(String updatedName, int updatedAge, String updatedGender) {
+        this.name = updatedName;
+        this.gender = updatedGender;
+        this.age = updatedAge;
+    }
+
+    public void updateStudent(String name, String gender, int age) {
+        this.name = name;
+        this.gender = gender;
+        this.age = age;
+    }
+
+
     // Getters and setters for the fields
     public String getId() {
         return id;
