@@ -21,6 +21,20 @@
             android:layout_marginTop="150dp"
             android:padding="20dp">
 
+            <EditText
+                android:layout_width="320dp"
+                android:layout_height="60dp"
+                android:id="@+id/fullName"
+                android:background="@drawable/lavender_border"
+                android:layout_marginTop="30dp"
+                android:padding="8dp"
+                android:hint="NIC"
+                android:drawableLeft="@drawable/baseline_email_24"
+                android:drawablePadding="8dp"
+
+                />
+
+
 
             <EditText
                 android:layout_width="320dp"
@@ -47,6 +61,8 @@
                 android:inputType="textPassword"
 
                 />
+
+
 
             <Button
                 android:layout_width="320dp"

@@ -8,7 +8,7 @@ import android.widget.Toast;
 import com.example.ead.databinding.ActivitySignupBinding;
 
 public class SignupActivity extends AppCompatActivity {
-    ActivitySignupBinding binding; // Use the generated binding class
+    ActivitySignupBinding binding;
     DataBaseHelper dataBaseHelper;
 
     @Override

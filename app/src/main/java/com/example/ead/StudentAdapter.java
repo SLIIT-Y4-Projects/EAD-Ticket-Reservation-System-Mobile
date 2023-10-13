@@ -15,18 +15,20 @@ import com.example.ead.Student;
 
 import java.util.List;
 
+
+
 public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.StudentViewHolder> {
 
     private Context context;
-    private List<Student> studentList;
+    private List<Reservation> reservationsList;
 
     public StudentAdapter(Context context) {
         this.context = context;
     }
 
-    public void setStudentList(List<Student> studentList) {
-        this.studentList = studentList;
-        notifyDataSetChanged(); // Notify the adapter that the data has changed
+    public void setStudentList(List<Reservation> reservations) {
+        this.reservationsList = reservations;
+        notifyDataSetChanged();
     }
 
     @NonNull
@@ -38,19 +40,18 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.StudentV
 
     @Override
     public void onBindViewHolder(@NonNull StudentViewHolder holder, int position) {
-        if (studentList != null && position < studentList.size()) {
-            Student student = studentList.get(position);
-            holder.nameTextView.setText("Name: "+student.getName());
-            holder.ageTextView.setText("Age: " + student.getAge());
-            holder.genderTextView.setText("Gender: " + student.getGender());
+        if (reservationsList != null && position < reservationsList.size()) {
+            Reservation reservation = reservationsList.get(position);
+            holder.nameTextView.setText("Date: "+reservation.getReservationDate());
+            holder.ageTextView.setText("Train ID: " + reservation.getTrainId());
+            holder.genderTextView.setText("User ID: " + reservation.getPassengerId());
 
-            // Add bindings for the new buttons
+
             holder.deleteButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    // Delete the student from the database
-                    // ...
-                    String studentIdToDelete = student.getId();
+
+                    String studentIdToDelete = reservation.getId();
 
                     // Create an Intent to start the DeleteStudentActivity
                     Intent intent = new Intent(context, DeleteStudentActivity.class);
@@ -61,37 +62,38 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.StudentV
                 }
             });
 
-            // ...
+
             holder.updateButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    // Get the selected student's ID
-                    String studentIdToUpdate = student.getId();
-                    String studentName = student.getName();
-                    String studentGender = student.getGender();
-                    int studentAge = student.getAge();
+
+                    String studentIdToUpdate = reservation.getId();
+                    String studentName = reservation.getTrainId();
+                    String studentGender = reservation.getPassengerId();
+                    String Date = reservation.getReservationDate();
 
 
                     // Create an Intent to start the UpdateStudentActivity and pass the student ID
                     Intent intent = new Intent(context, UpdateStudentActivity.class);
                     intent.putExtra("studentId", studentIdToUpdate);
                     intent.putExtra("name", studentName);
-                    intent.putExtra("age", studentAge);
+                    intent.putExtra("age", Date);
                     intent.putExtra("gender", studentGender);
 
 
                     // Start the UpdateStudentActivity
                     context.startActivity(intent);
                 }
+
             });
-// ...
+
 
         }
     }
 
     @Override
     public int getItemCount() {
-        return studentList != null ? studentList.size() : 0;
+        return reservationsList != null ? reservationsList.size() : 0;
     }
 
     static class StudentViewHolder extends RecyclerView.ViewHolder {

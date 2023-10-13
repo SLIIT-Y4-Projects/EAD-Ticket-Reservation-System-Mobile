@@ -12,20 +12,26 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     public static final String TABLE_AUTH_TOKEN = "auth_tokens";
     public static final String COLUMN_ID = "id";
     public static final String COLUMN_TOKEN = "token";
-    public DataBaseHelper(@Nullable Context context) {
-        super(context, "Signup.db",null,1);
-    }
+
+
 
     public static final String databaseName = "Signup.db";
-    public static final String logindb = "login.db";
+    //public static final String loginDb = "login.db";
+    public static final String loginData= "user_auth";
+
+    private static final int DATABASE_VERSION = 1;
+
+    public DataBaseHelper(Context context) {
+
+        //super(context,databaseName , null, DATABASE_VERSION);
+        super(context,loginData , null, DATABASE_VERSION);
+    }
+
 
     @Override
     public void onCreate(SQLiteDatabase MyDatabase) {
         MyDatabase.execSQL("CREATE TABLE allusers(nic_no TEXT PRIMARY KEY, email TEXT, password TEXT, status TEXT DEFAULT 'pending')");
-
-        MyDatabase.execSQL("CREATE TABLE " + TABLE_AUTH_TOKEN + " (" +
-                COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                COLUMN_TOKEN + " TEXT)");
+        MyDatabase.execSQL("CREATE TABLE user_auth(id1 TEXT,token TEXT)");
     }
 
 
@@ -137,50 +143,41 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         }
         }
 
-    public boolean saveAuthToken(String authToken) {
+
+    public boolean insertLogin(String id,String token){
+        SQLiteDatabase MyDatabase = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("id1", id);
+        contentValues.put("token", token);
+
+
+        long result = MyDatabase.insert( loginData , null, contentValues) ;
+        if(result == -1){
+            return false;
+
+        }else {
+            return true;
+        }
+    }
+    public boolean deleteLoginByID(String id) {
         SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues values = new ContentValues();
-        values.put(COLUMN_TOKEN, authToken);
-        long result = db.insert(TABLE_AUTH_TOKEN, null, values);
+
+        // Define the WHERE clause to specify which rows to delete based on the "id1" column
+        String whereClause = "id1 = ?";
+        String[] whereArgs = {id};
+
+        // Delete the rows that match the "id1" value
+        int rowsDeleted = db.delete("loginData", whereClause, whereArgs);
+
         db.close();
-        return result != -1;
+
+        // Check if any rows were deleted (returns the number of rows deleted)
+        return rowsDeleted > 0;
     }
 
-    // Add a method to retrieve the authentication token
-    public String getAuthToken() {
-        SQLiteDatabase db = this.getReadableDatabase();
-        String token = null;
-        Cursor cursor = db.query(
-                TABLE_AUTH_TOKEN,
-                new String[]{COLUMN_TOKEN},
-                null,
-                null,
-                null,
-                null,
-                null
-        );
-        if (cursor != null) {
-            if (cursor.moveToFirst()) {
-                int columnIndex = cursor.getColumnIndex(COLUMN_TOKEN);
-                if (columnIndex != -1) {
-                    token = cursor.getString(columnIndex);
-                }
-            }
-            cursor.close();
-        }
-        db.close();
-        return token;
-    }
-    public String getAuthTokenByUsername(String username) {
-        SQLiteDatabase MyDatabase = this.getReadableDatabase();
-        Cursor cursor = MyDatabase.rawQuery("SELECT auth_token FROM allusers WHERE username = ?", new String[]{username});
 
-        if (cursor.moveToFirst()) {
-            return cursor.getString(0);
-        } else {
-            return null;
-        }
-    }
+
+
 
 
 }

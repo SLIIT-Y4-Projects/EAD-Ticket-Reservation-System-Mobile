@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
+
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -21,9 +23,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity {
 
-
-
-    private static final String BASE_URL = "https://studentmanagement20231009140446.azurewebsites.net/";
+    private static final String BASE_URL = "https://ticketreservationsystem01.azurewebsites.net/";
     private static final String TAG = "MainActivity";
 
     private RecyclerView recyclerView;
@@ -34,44 +34,49 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Initialize the RecyclerView
+
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         adapter = new StudentAdapter(this);
         recyclerView.setAdapter(adapter);
 
-        // Create a Retrofit instance
+
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
-        // Create an instance of the API interface
-        StudentApi studentApi = retrofit.create(StudentApi.class);
 
-        // Make the API request
-        Call<List<Student>> call = studentApi.getStudents();
-        call.enqueue(new Callback<List<Student>>() {
+        UserApi studentApi = retrofit.create(UserApi.class);
+
+
+        Call<List<Reservation>> call = studentApi.getReservation();
+        call.enqueue(new Callback<List<Reservation>>() {
             @Override
-            public void onResponse(Call<List<Student>> call, Response<List<Student>> response) {
+            public void onResponse(Call<List<Reservation>> call, Response<List<Reservation>> response) {
                 if (response.isSuccessful()) {
-                    // The API call was successful
-                    List<Student> students = response.body();
-                    // Update the RecyclerView with the list of students
-                    adapter.setStudentList(students);
+
+                    List<Reservation> reservations = response.body();
+
+                    adapter.setStudentList(reservations);
                 } else {
-                    // Handle the error response
+
                     Log.e(TAG, "API call failed: " + response.message());
+                    showToast("Failed to fetch student data. Please check your network connection.");
                 }
             }
 
             @Override
-            public void onFailure(Call<List<Student>> call, Throwable t) {
-                // Handle failure
+            public void onFailure(Call<List<Reservation>> call, Throwable t) {
+                // Handle failure and provide user feedback
                 Log.e(TAG, "API call failed: " + t.getMessage());
+                showToast("Failed to fetch student data. Please check your network connection.");
             }
         });
+    }
 
-
+    private void showToast(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 }
+

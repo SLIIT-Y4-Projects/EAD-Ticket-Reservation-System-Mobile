@@ -26,27 +26,53 @@
                 android:layout_marginTop="150dp"
                 android:padding="20dp">
 
-        <EditText
-            android:id="@+id/loginUserName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:hint="Email"
-            android:inputType="textEmailAddress"
-            android:padding="12dp"
+<!--        <EditText-->
+<!--            android:id="@+id/loginUserName"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_centerVertical="true"-->
+<!--            android:hint="Email"-->
+<!--            android:inputType="textEmailAddress"-->
+<!--            android:padding="12dp"-->
 
-            android:layout_marginBottom="16dp"/>
+<!--            android:layout_marginBottom="16dp"/>-->
 
-        <EditText
-            android:id="@+id/loginPassword"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/loginEmail"
-            android:hint="Password"
-            android:inputType="textPassword"
-            android:padding="12dp"
+<!--        <EditText-->
+<!--            android:id="@+id/loginPassword"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_below="@id/loginEmail"-->
+<!--            android:hint="Password"-->
+<!--            android:inputType="textPassword"-->
+<!--            android:padding="12dp"-->
 
-            android:layout_marginBottom="16dp"/>
+<!--            android:layout_marginBottom="16dp"/>-->
+
+                <EditText
+                    android:layout_width="320dp"
+                    android:layout_height="60dp"
+                    android:id="@+id/loginUserName"
+                    android:background="@drawable/lavender_border"
+                    android:layout_marginTop="30dp"
+                    android:padding="8dp"
+                    android:hint="Login Email"
+                    android:drawableLeft="@drawable/baseline_email_24"
+                    android:drawablePadding="8dp"
+
+                    />
+                <EditText
+                    android:layout_width="320dp"
+                    android:layout_height="60dp"
+                    android:id="@+id/loginPassword"
+                    android:background="@drawable/lavender_border"
+                    android:layout_marginTop="30dp"
+                    android:padding="8dp"
+                    android:hint="Login Password"
+                    android:inputType="textPassword"
+                    android:drawableLeft="@drawable/baseline_vpn_key_24"
+                    android:drawablePadding="8dp"
+
+                    />
 
         <Button
             android:id="@+id/loginButton"

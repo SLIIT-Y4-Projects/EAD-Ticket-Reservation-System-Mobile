@@ -62,7 +62,7 @@ public class UpdateStudentActivity extends AppCompatActivity {
                         .addConverterFactory(GsonConverterFactory.create())
                         .build();
 
-                StudentApi studentApi = retrofit.create(StudentApi.class);
+               UserApi studentApi = retrofit.create(UserApi.class);
 
                 Call<Void> call = studentApi.updateStudent(studentId, updatedStudent);
                 call.enqueue(new Callback<Void>() {
@@ -82,10 +82,10 @@ public class UpdateStudentActivity extends AppCompatActivity {
 
                     public void onFailure(Call<Void> call, Throwable t) {
                         if (t instanceof IOException) {
-                            // Network or conversion error (e.g., parsing JSON)
+
                             Log.e("UpdateStudent", "Network or conversion error: " + t.getMessage());
                         } else {
-                            // Unexpected error
+
                             Log.e("UpdateStudent", "Unexpected error: " + t.getMessage());
                         }
                     }

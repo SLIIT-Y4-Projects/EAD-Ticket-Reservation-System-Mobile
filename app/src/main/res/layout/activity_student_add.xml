@@ -6,8 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".Student_add">
 
-    <!-- EditText for entering student name -->
-    <!-- EditText for entering student name -->
+
     <EditText
         android:id="@+id/etName"
         android:layout_width="match_parent"
@@ -17,7 +16,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <!-- EditText for entering student age -->
+
     <EditText
         android:id="@+id/etAge"
         android:layout_width="match_parent"
@@ -27,9 +26,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <!-- Add more EditText fields for other student details here -->
 
-    <!-- EditText for entering student gender -->
     <EditText
         android:id="@+id/etGender"
         android:layout_width="match_parent"
@@ -39,12 +36,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <!-- EditText for entering student course -->
 
-
-    <!-- Add more EditText fields as needed -->
-
-    <!-- Button to submit the student data -->
     <Button
         android:id="@+id/btnSubmit"
         android:layout_width="wrap_content"

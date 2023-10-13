@@ -9,9 +9,29 @@ public class Student {
     private String gender;
     private int age;
 
+    public String getNic() {
+        return nic;
+    }
+
+    public void setNic(String nic) {
+        this.nic = nic;
+    }
+
+    private String nic;
+
     private String username;
 
     private String password;
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    private String status;
 
     // Constructors, getters, and setters for the fields
 
