@@ -61,13 +61,31 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.StudentV
                 }
             });
 
+            // ...
             holder.updateButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    // Update the student in the database
-                    // ...
+                    // Get the selected student's ID
+                    String studentIdToUpdate = student.getId();
+                    String studentName = student.getName();
+                    String studentGender = student.getGender();
+                    int studentAge = student.getAge();
+
+
+                    // Create an Intent to start the UpdateStudentActivity and pass the student ID
+                    Intent intent = new Intent(context, UpdateStudentActivity.class);
+                    intent.putExtra("studentId", studentIdToUpdate);
+                    intent.putExtra("name", studentName);
+                    intent.putExtra("age", studentAge);
+                    intent.putExtra("gender", studentGender);
+
+
+                    // Start the UpdateStudentActivity
+                    context.startActivity(intent);
                 }
             });
+// ...
+
         }
     }
 
