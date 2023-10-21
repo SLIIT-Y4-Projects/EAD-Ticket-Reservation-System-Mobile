@@ -15,6 +15,9 @@ public interface UserApi {
 
     @GET("api/Reservation")
     Call<List<Reservation>> getReservation();
+
+    @GET("api/Train")
+    Call<List<Train>> getTrain();
     @DELETE("api/students/{id}")
     Call<Void> deleteStudent(@Path("id") String studentId);
 
@@ -25,8 +28,14 @@ public interface UserApi {
     @POST("api/TravellerUser/register")
     Call<Void> register(@Body Traveller traveller);
 
+    @POST("/api/Reservation")
+    Call<ReservationResponse> addReservation(@Body Reservation reservation);
+
     @PUT("api/students/{id}")
     Call<Void> updateStudent(@Path("id") String studentId, @Body Student student);
+
+    @PUT("/api/TravellerUser/deactivate/{id}")
+    Call<Void> userDeactivate(@Path("id") String userID);
 
 
 

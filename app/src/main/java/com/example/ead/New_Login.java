@@ -28,7 +28,7 @@ public class New_Login extends AppCompatActivity {
     DataBaseHelper dataBaseHelper = new DataBaseHelper(this) ;
 
 
-    private static final String BASE_URL = "https://ticketreservationsystem01.azurewebsites.net/";
+    private static final String BASE_URL = "https://ticketreservationsystemapinew.azurewebsites.net/";
 
     private UserApi loginApi;
     private EditText loginUserName;

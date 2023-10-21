@@ -6,6 +6,8 @@ public class Reservation {
     private String status;
     private String passengerId;
 
+    private String trainId;
+
     public String getId() {
         return id;
     }
@@ -46,7 +48,7 @@ public class Reservation {
         this.trainId = trainId;
     }
 
-    private String trainId;
+
 
     public Reservation(){}
     public Reservation(String id, String reservationDate, String status, String passengerId, String trainId) {

@@ -18,6 +18,9 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     public static final String databaseName = "Signup.db";
     //public static final String loginDb = "login.db";
     public static final String loginData= "user_auth";
+    private String sessionDetails="sessionDetails";
+
+
 
     private static final int DATABASE_VERSION = 1;
 
@@ -146,12 +149,14 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
     public boolean insertLogin(String id,String token){
         SQLiteDatabase MyDatabase = this.getWritableDatabase();
+
+        MyDatabase.execSQL("CREATE TABLE IF NOT EXISTS sessionDetails(id TEXT PRIMARY KEY, token TEXT)");
+
         ContentValues contentValues = new ContentValues();
-        contentValues.put("id1", id);
+        contentValues.put("id", id);
         contentValues.put("token", token);
 
-
-        long result = MyDatabase.insert( loginData , null, contentValues) ;
+        long result = MyDatabase.insert( sessionDetails , null, contentValues) ;
         if(result == -1){
             return false;
 
@@ -160,19 +165,21 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         }
     }
     public boolean deleteLoginByID(String id) {
-        SQLiteDatabase db = this.getWritableDatabase();
+        SQLiteDatabase MyDatabase = this.getWritableDatabase();
 
         // Define the WHERE clause to specify which rows to delete based on the "id1" column
-        String whereClause = "id1 = ?";
+        String whereClause = "id = ?";
         String[] whereArgs = {id};
 
         // Delete the rows that match the "id1" value
-        int rowsDeleted = db.delete("loginData", whereClause, whereArgs);
+        long result = MyDatabase.delete("sessionDetails", whereClause, whereArgs);
+        if(result == -1){
+            return false;
 
-        db.close();
+        }else {
+            return true;
+        }
 
-        // Check if any rows were deleted (returns the number of rows deleted)
-        return rowsDeleted > 0;
     }
 
 

@@ -7,22 +7,20 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-import android.view.View.OnClickListener;
+
 import android.widget.Button;
 import android.content.Intent;
-import com.example.ead.R;
-import com.example.ead.Student;
 
 import java.util.List;
 
 
 
-public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.StudentViewHolder> {
+public class ReservationAdapter extends RecyclerView.Adapter<ReservationAdapter.StudentViewHolder> {
 
     private Context context;
     private List<Reservation> reservationsList;
 
-    public StudentAdapter(Context context) {
+    public ReservationAdapter(Context context) {
         this.context = context;
     }
 
@@ -109,7 +107,6 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.StudentV
             super(itemView);
             nameTextView = itemView.findViewById(R.id.nameTextView);
             ageTextView = itemView.findViewById(R.id.ageTextView);
-
             genderTextView = itemView.findViewById(R.id.genderTextView);
 
             // Add bindings for the new buttons

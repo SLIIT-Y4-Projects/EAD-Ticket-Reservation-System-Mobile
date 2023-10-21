@@ -1,6 +1,8 @@
 package com.example.ead;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -19,7 +21,7 @@ import com.example.ead.databinding.ActivitySignupBinding;
 
 public class NewSignUp extends AppCompatActivity {
 
-    private static final String BASE_URL = "https://ticketreservationsystem01.azurewebsites.net/";
+    private static final String BASE_URL = "https://ticketreservationsystemapinew.azurewebsites.net/";
 
     private EditText userFullNameEditText;
     private EditText userNameEditText;
@@ -66,6 +68,10 @@ public class NewSignUp extends AppCompatActivity {
                         if (response.isSuccessful()) {
 
                             Toast.makeText(NewSignUp.this, "Registration successful", Toast.LENGTH_SHORT).show();
+
+                            Intent intent = new Intent(NewSignUp.this, UserHome.class);
+                            startActivity(intent);
+                            finish();
 
 
                         } else {
